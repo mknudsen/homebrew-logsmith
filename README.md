@@ -7,4 +7,4 @@ brew tap mknudsen/logsmith
 brew install logsmith
 ```
 
-this may not be maintained / up to date.
+There is a workflow checking for new releases once a day.
