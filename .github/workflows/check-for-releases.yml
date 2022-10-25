@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: check for new releases
       env:
-        GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./update_cask.sh
     - name: commit new release
