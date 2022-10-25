@@ -4,7 +4,7 @@ set -xueo pipefail
 
 RELEASE_INFO=$(curl \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: ${GITHUB_API_TOKEN}" https://api.github.com/repos/otto-de/logsmith/releases/latest)
+  -H "Authorization: ${GITHUB_TOKEN}" https://api.github.com/repos/otto-de/logsmith/releases/latest)
 
 VERSION=$(echo "$RELEASE_INFO"|jq -r .name)
 URL=$(echo "$RELEASE_INFO"|jq -r '.assets | .[] |.browser_download_url'|grep darwin)
