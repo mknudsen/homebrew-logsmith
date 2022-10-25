@@ -1,0 +1,24 @@
+on:
+  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '00 23 * * *'
+    
+name: check for releases
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: check for new releases
+      env:
+        GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
+      run: |
+        ./update_cask.sh
+    - name: commit new release
+      run: |
+        git config --global user.email "martin.knudsen@gmail.com" && git config --global user.name "Martin Knudsen" && \
+        git add ./Casks/* && git commit -am "new logsmith release" && git push || echo "Nothing to import."
