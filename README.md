@@ -1,6 +1,6 @@
 # homebrew-logsmith
 
-cask for https://github.com/otto-de/logsmith
+Cask for https://github.com/otto-de/logsmith
 
 ```
 brew tap mknudsen/logsmith
