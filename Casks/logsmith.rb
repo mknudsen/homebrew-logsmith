@@ -1,7 +1,7 @@
 cask "logsmith" do
   version "6.2.1"
   homepage "https://github.com/otto-de/logsmith"
-  sha256 "04b6e99508c28629ee1928ba15fb253eadbed9b42209a276a79006099ed2782c"
+  sha256 "1511fe3428d2806f8861b2204369e211888a25e42166861327c95e09a58aa778"
   url "https://github.com/otto-de/logsmith/releases/download/#{version}/logsmith_darwin_#{version}.zip"
-  app "logsmith.app"
+  app "./dist/logsmith.app"
 end
