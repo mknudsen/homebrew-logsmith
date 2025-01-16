@@ -19,5 +19,5 @@ echo "cask \"logsmith\" do
   homepage \"https://github.com/otto-de/logsmith\"
   sha256 \"${CHECKSUM}\"
   url \"https://github.com/otto-de/logsmith/releases/download/#{version}/logsmith_darwin_#{version}.zip\"
-  app \"logsmith.app\"
+  app \"dist/logsmith.app\"
 end" > ./Casks/logsmith.rb
