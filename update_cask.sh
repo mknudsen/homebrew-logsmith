@@ -2,14 +2,17 @@
 
 set -xueo pipefail
 
-RELEASE_INFO=$(curl \
+RELEASES_INFO=$(curl \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: ${GITHUB_TOKEN}" https://api.github.com/repos/otto-de/logsmith/releases/latest)
+  -H "Authorization: ${GITHUB_TOKEN}" https://api.github.com/repos/otto-de/logsmith/releases)
+
+# Filter out releases where .name contains "-yanked", get the latest one
+RELEASE_INFO=$(echo "$RELEASES_INFO" | jq -c '[.[] | select(.name | contains("-yanked") | not)] | first')
 
 VERSION=$(echo "$RELEASE_INFO"|jq -r .name)
 URL=$(echo "$RELEASE_INFO"|jq -r '.assets | .[] |.browser_download_url'|grep darwin)
 
-rm ./release.zip &
+rm -f ./release.zip &
 curl -L -o release.zip "${URL}"
 
 CHECKSUM=$(sha256sum release.zip | cut -d " " -f 1)
