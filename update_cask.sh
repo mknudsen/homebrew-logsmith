@@ -8,8 +8,8 @@ RELEASES_INFO=$(curl \
 
 echo "$RELEASES_INFO" | jq .
 
-# Filter out releases where .name contains "-yanked", get the latest one
-RELEASE_INFO=$(echo "$RELEASES_INFO" | jq -c '[.[] | select(.name | contains("-yanked") | not)] | first')
+# Filter out releases where .name contains "-yanked" or "prerelease" is true, get the latest one
+RELEASE_INFO=$(echo "$RELEASES_INFO" | jq -c '[.[] | select((.name | contains("-yanked") | not) and (.prerelease | not))] | first')
 
 VERSION=$(echo "$RELEASE_INFO"|jq -r .name)
 URL=$(echo "$RELEASE_INFO"|jq -r '.assets | .[] |.browser_download_url'|grep darwin)
