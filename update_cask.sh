@@ -6,6 +6,8 @@ RELEASES_INFO=$(curl \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: ${GITHUB_TOKEN}" https://api.github.com/repos/otto-de/logsmith/releases)
 
+echo "$RELEASES_INFO" | jq .
+
 # Filter out releases where .name contains "-yanked", get the latest one
 RELEASE_INFO=$(echo "$RELEASES_INFO" | jq -c '[.[] | select(.name | contains("-yanked") | not)] | first')
 
