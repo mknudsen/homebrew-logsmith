@@ -4,5 +4,6 @@ cask "logsmith" do
   sha256 "e11b5b2c1e3d7867a7cb21f1dbd14a7481650c5b7b0a97931c8587d56351b7f3"
   url "https://github.com/otto-de/logsmith/releases/download/#{version}/logsmith_darwin_#{version}.zip"
   app "dist/logsmith.app"
-  deprecate! date: "2026-01-05", because: "the cask repo is no longer maintained. There is a replacement from the author of logsmith.", replacement_cask: "redvox/homebrew-logsmith" 
+  deprecate! date: "2026-01-05", because: "is now distributed directly by the author.", replacement_cask: "redvox/homebrew-logsmith"
+  disable! date: "2026-07-05", because: "is now distributed directly by the author.", replacement_cask: "redvox/homebrew-logsmith" 
 end
